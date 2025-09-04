@@ -1,0 +1,11 @@
+{
+  "eventName": "Delhi Flood Emergency",
+  "disasterType": "FLOOD",
+  "coordinates": [
+    [77.2, 28.61],
+    [77.22, 28.61],
+    [77.22, 28.62],
+    [77.2, 28.62],
+    [77.2, 28.61]
+  ]
+}

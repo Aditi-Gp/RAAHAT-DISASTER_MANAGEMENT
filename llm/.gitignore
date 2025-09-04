@@ -1,0 +1,37 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+
+# Logs
+logs/
+*.log
+
+# Pickle or model files
+models/*.pkl
+
+# Dataset files (if you don't want to track raw/processed data)
+data/processed/
+data/augmented/
+*.csv
+*.json
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE/editor specific
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Python environment packages
+*.egg-info/
+dist/
+build/
+.eggs/
+pip-wheel-metadata/
