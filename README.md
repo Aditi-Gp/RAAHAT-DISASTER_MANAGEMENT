@@ -6,7 +6,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4.13-38B2AC.svg)](https://tailwindcss.com/)
 
 
-DEMO VIDEO: https://youtu.be/51lw5EzS2As
+DEMO VIDEO: https://youtu.be/51lw5EzS2As \
 WEBSITE: http://raahat-frontend.s3-website.ap-south-1.amazonaws.com/
 
 A comprehensive disaster management frontend application built with React, TypeScript, and modern web technologies. This client provides real-time emergency response capabilities, interactive disaster mapping, and comprehensive user management for the Raahat disaster management system.
