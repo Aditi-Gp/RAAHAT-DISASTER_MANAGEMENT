@@ -1,0 +1,22 @@
+1. FRONTEND SITE:
+http://raahat-frontend.s3-website.ap-south-1.amazonaws.com/
+
+2. Backend SITE
+http://raahat-backend-env.eba-nbm5sfpr.ap-south-1.elasticbeanstalk.com/
+13.201.229.231
+
+
+frontend deployment->s3 bucket-> aws s3 sync dist/ s3://raahat-frontend/ --delete
+nvm use 20
+npm run build
+
+
+
+backend deployment->elastic beanstalk->env->deploy ->upload zip file
+npm run build
+npx prisma generate
+zip -r ../raahat-backend.zip . -x "*.git*" "node_modules/*"
+
+
+
+

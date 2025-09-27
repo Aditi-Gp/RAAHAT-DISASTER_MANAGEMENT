@@ -145,7 +145,7 @@ process.on("SIGTERM", async () => {
 
 // Start server only if not running in Lambda
 if (!module.parent && !process.env.IS_LAMBDA) {
-  app.listen(PORT, () => {
+  app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Raahat API Server running on port ${PORT}`);
     console.log(`📊 Environment: ${process.env.NODE_ENV || "development"}`);
     console.log(
