@@ -9,7 +9,7 @@
 DEMO VIDEO: https://youtu.be/51lw5EzS2As \
 WEBSITE: http://raahat-frontend.s3-website.ap-south-1.amazonaws.com/
 
-A comprehensive disaster management frontend application built with React, TypeScript, and modern web technologies. This client provides real-time emergency response capabilities, interactive disaster mapping, and comprehensive user management for the Raahat disaster management system.
+A disaster management frontend application built with React, TypeScript, and modern web technologies. This client provides real-time emergency response capabilities, interactive disaster mapping, and comprehensive user management for the Raahat disaster management system.
 
 ## 🌟 Features
 
