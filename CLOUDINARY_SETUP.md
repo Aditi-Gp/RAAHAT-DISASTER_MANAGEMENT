@@ -1,14 +1,3 @@
-# Cloudinary Setup Guide for Raahat
-
-## 🚀 Quick Setup
-
-### 1. Create Cloudinary Account
-
-1. Go to [cloudinary.com](https://cloudinary.com)
-2. Sign up for a free account
-3. Navigate to your Dashboard
-
-### 2. Get Your Credentials
 
 From your Cloudinary Dashboard, copy these values:
 
