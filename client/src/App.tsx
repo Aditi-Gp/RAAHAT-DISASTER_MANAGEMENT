@@ -7,9 +7,9 @@ import {
   Routes,
 } from "react-router-dom";
 
-import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
-import { DashboardLayout } from "@/components/layout/DashboardLayout";
-import { MainLayout } from "@/components/layout/MainLayout";
+import { ProtectedRoute } from "@/components/Auth/ProtectedRoute";
+import { DashboardLayout } from "@/components/Layout/DashboardLayout";
+import { MainLayout } from "@/components/Layout/MainLayout";
 import { useAuth } from "@/hooks/useAuth";
 
 import { DisasterMapPage } from "@/pages/DisasterMapPage";
