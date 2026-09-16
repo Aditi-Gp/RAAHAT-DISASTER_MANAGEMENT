@@ -94,12 +94,12 @@ const DISASTER_PHOTOS: DisasterPhoto[] = [
     id: 'p-wildfire',
     category: 'wildfire',
     title: 'Forest Fire Arial Water Tanker Quench',
-    tag: '🔥 Forest Fire',
+    tag: 'Forest Fire',
     tagColor: 'amber',
     location: 'Shimla Ridge & Uttarakhand Forest Sector',
     status: 'ACTIVE AIR CONTAINMENT',
     stat: '1,420 Hectares Protected • 0 Human Loss',
-    imgUrl: 'https://images.unsplash.com/photo-1599818987489-0118833b74bf?auto=format&fit=crop&w=800&q=80',
+    imgUrl: 'https://images.unsplash.com/photo-1634009653379-a97409ee15de?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     description: 'Emergency aerial retardant tankers and specialized ground firebreaks containing high-heat ridge fires. Thermal drones guiding crews to hot spots.',
     actionPrompt: 'Request Air Tanker Support',
   },
@@ -107,12 +107,12 @@ const DISASTER_PHOTOS: DisasterPhoto[] = [
     id: 'p-earthquake',
     category: 'earthquake',
     title: 'Seismic Rubble Canine Search & Rescue',
-    tag: '🏚️ Earthquake',
+    tag: 'Earthquake',
     tagColor: 'rose',
     location: 'Northern Faultline Zone',
     status: 'SURVIVOR EXTRACTION',
     stat: '48 Survivors Extracted • 320 Tents Erected',
-    imgUrl: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=800&q=80',
+    imgUrl: 'https://images.unsplash.com/photo-1610774149656-f4d74dafa99b?q=80&w=612&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     description: 'Heavy hydraulic spreaders and acoustic listening gear extracting trapped citizens from collapsed masonry. All victims stabilized at field trauma stations.',
     actionPrompt: 'Request Search & Rescue Team',
   },
@@ -120,7 +120,7 @@ const DISASTER_PHOTOS: DisasterPhoto[] = [
     id: 'p-typhoon',
     category: 'typhoon',
     title: 'Super Cyclone Coastal Evacuation',
-    tag: '🌀 Typhoon & Storm',
+    tag: 'Typhoon & Storm',
     tagColor: 'violet',
     location: 'Bay of Bengal Coastal Belt',
     status: 'SHELTER CORRIDORS OPEN',
@@ -133,7 +133,7 @@ const DISASTER_PHOTOS: DisasterPhoto[] = [
     id: 'p-flood',
     category: 'flood',
     title: 'Monsoon Deluge Zodiac Fleet Operations',
-    tag: '🌊 Flash Flood',
+    tag: 'Flash Flood',
     tagColor: 'cyan',
     location: 'Assam Plains & Mumbai Coastal Inundation',
     status: 'AMPHIBIOUS EVACUATION',
@@ -146,7 +146,7 @@ const DISASTER_PHOTOS: DisasterPhoto[] = [
     id: 'p-medical',
     category: 'medical',
     title: 'Mobile Trauma & Pediatric Field Hospital',
-    tag: '🩺 Medical Trauma',
+    tag: 'Medical Trauma',
     tagColor: 'emerald',
     location: 'Central Relief Camp Cluster',
     status: 'FREE SURGICAL TRIAGE',
@@ -159,7 +159,7 @@ const DISASTER_PHOTOS: DisasterPhoto[] = [
     id: 'p-water',
     category: 'water',
     title: 'Reverse Osmosis Clean Water & Rations Drop',
-    tag: '💧 Potable Water Supply',
+    tag: 'Potable Water Supply',
     tagColor: 'cyan',
     location: 'Eastern Delta Logistics Node',
     status: 'CONTINUOUS BOWSER DISPATCH',
@@ -459,8 +459,12 @@ const GlobalStyles = () => (
     /* =========================================================================
        NEW SECTION: REAL DISASTER RELIEF PHOTOS GALLERY
        ========================================================================= */
-    .rh-gallery-section { max-width: 1280px; margin: 0 auto 80px; padding: 0 36px; }
-    .rh-gallery-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px; flex-wrap: wrap; gap: 16px; }
+    .rh-gallery-section { max-width: none; margin: 0 0 80px; padding: 56px max(36px, calc((100vw - 1280px) / 2)); background: #102522; color: #FFFFFF; overflow: hidden; }
+    .rh-gallery-header { display: flex; justify-content: space-between; align-items: flex-end; margin: 0 auto 28px; max-width: 1280px; flex-wrap: wrap; gap: 16px; }
+    .rh-gallery-header h3 { color: #FFFFFF !important; }
+    .rh-gallery-header p { color: #A8C3BE !important; }
+    .rh-gallery-header .rh-filter-btn { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); color: #D8E9E6; }
+    .rh-gallery-header .rh-filter-btn:hover, .rh-gallery-header .rh-filter-btn.active { background: #D8F5EF; border-color: #D8F5EF; color: #102522; }
     
     .rh-filter-chips { display: flex; flex-wrap: wrap; gap: 10px; }
     .rh-filter-btn {
@@ -474,30 +478,36 @@ const GlobalStyles = () => (
     }
 
     .rh-gallery-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+      display: flex; gap: 20px; max-width: 1280px; margin: 0 auto; overflow-x: auto; padding: 8px 2px 24px;
+      scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: thin; scrollbar-color: #5B8982 transparent;
     }
+    .rh-gallery-grid::-webkit-scrollbar { height: 6px; }
+    .rh-gallery-grid::-webkit-scrollbar-track { background: rgba(255,255,255,0.1); }
+    .rh-gallery-grid::-webkit-scrollbar-thumb { background: #5B8982; border-radius: 99px; }
     .rh-photo-card {
-      background: #FFFFFF; border-radius: 24px; border: 1.5px solid var(--line);
-      overflow: hidden; display: flex; flex-direction: column; cursor: pointer;
-      transition: transform 0.25s ease, box-shadow 0.25s ease; position: relative;
+      flex: 0 0 min(410px, calc(100vw - 72px)); min-height: 510px; scroll-snap-align: start;
+      background: #FFFFFF; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2);
+      overflow: hidden; display: flex; flex-direction: column; cursor: pointer; transition: transform 0.25s ease, box-shadow 0.25s ease; position: relative;
     }
     .rh-photo-card:hover {
-      transform: translateY(-5px); box-shadow: 0 20px 44px -10px rgba(13, 148, 136, 0.22);
+      transform: translateY(-7px) rotate(-0.5deg); box-shadow: 0 24px 46px -12px rgba(0,0,0,0.45);
     }
     .rh-photo-img-wrap {
-      width: 100%; height: 210px; overflow: hidden; position: relative; background: #CBD5E1;
+      width: 100%; height: 255px; overflow: hidden; position: relative; background: #CBD5E1;
     }
     .rh-photo-img {
       width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease;
     }
     .rh-photo-card:hover .rh-photo-img { transform: scale(1.06); }
+    .rh-photo-img-wrap::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,24,22,0.05) 35%, rgba(5,24,22,0.72) 100%); pointer-events: none; }
+    .rh-photo-index { position: absolute; right: 16px; bottom: 14px; z-index: 1; color: #FFFFFF; font: 700 11px 'JetBrains Mono', monospace; letter-spacing: 0.08em; }
     .rh-photo-status-badge {
       position: absolute; top: 14px; left: 14px; padding: 5px 12px; border-radius: 999px;
       font-size: 11px; font-weight: 800; font-family: 'JetBrains Mono', monospace;
       letter-spacing: 0.05em; backdrop-filter: blur(8px);
     }
-    .rh-photo-body { padding: 20px; display: flex; flex-direction: column; flex: 1; }
-    .rh-photo-body h4 { margin: 0 0 8px; font-size: 18px; font-weight: 800; color: var(--primary-900); line-height: 1.3; }
+    .rh-photo-body { padding: 22px; display: flex; flex-direction: column; flex: 1; }
+    .rh-photo-body h4 { margin: 0 0 8px; font-size: 21px; font-weight: 800; color: var(--primary-900); line-height: 1.2; }
     .rh-photo-body p { margin: 0 0 16px; font-size: 13px; color: var(--slate); line-height: 1.5; flex: 1; }
     .rh-photo-stat {
       padding: 8px 12px; border-radius: 10px; background: var(--primary-50);
@@ -591,12 +601,10 @@ const GlobalStyles = () => (
       .rh-process-bar { grid-template-columns: repeat(2, 1fr); }
       .rh-step-item:not(:last-child)::after { display: none; }
       .rh-metaphor-card { grid-template-columns: 1fr; }
-      .rh-gallery-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 640px) {
       .rh-action-hub { grid-template-columns: 1fr; }
       .rh-process-bar { grid-template-columns: 1fr; }
-      .rh-gallery-grid { grid-template-columns: 1fr; }
     }
   `}</style>
 );
@@ -1226,7 +1234,7 @@ export default function RaahatApp() {
       <section id="field-photos" className="rh-gallery-section">
         <div className="rh-gallery-header">
           <div>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '12px', fontWeight: 800, color: 'var(--primary-700)', textTransform: 'uppercase', letterSpacing: '0.08em', fontFamily: 'JetBrains Mono' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '12px', fontWeight: 800, color: '#8FE4D8', textTransform: 'uppercase', letterSpacing: '0.08em', fontFamily: 'JetBrains Mono' }}>
               <IconCamera size={15} /> Ground Telemetry &amp; Field Operations
             </div>
             <h3 className="rh-font-serif" style={{ fontSize: '36px', color: 'var(--primary-900)', margin: '6px 0 0' }}>
@@ -1240,29 +1248,29 @@ export default function RaahatApp() {
           {/* Filter Chips */}
           <div className="rh-filter-chips">
             <button className={`rh-filter-btn ${selectedPhotoCategory === 'all' ? 'active' : ''}`} onClick={() => setSelectedPhotoCategory('all')}>
-              🌐 All Operations (6)
+              All Operations (6)
             </button>
             <button className={`rh-filter-btn ${selectedPhotoCategory === 'wildfire' ? 'active' : ''}`} onClick={() => setSelectedPhotoCategory('wildfire')}>
-              🔥 Forest Fires
+              Forest Fires
             </button>
             <button className={`rh-filter-btn ${selectedPhotoCategory === 'earthquake' ? 'active' : ''}`} onClick={() => setSelectedPhotoCategory('earthquake')}>
-              🏚️ Earthquakes
+              Earthquakes
             </button>
             <button className={`rh-filter-btn ${selectedPhotoCategory === 'typhoon' ? 'active' : ''}`} onClick={() => setSelectedPhotoCategory('typhoon')}>
-              🌀 Typhoons
+              Typhoons
             </button>
             <button className={`rh-filter-btn ${selectedPhotoCategory === 'flood' ? 'active' : ''}`} onClick={() => setSelectedPhotoCategory('flood')}>
-              🌊 Floods
+              Floods
             </button>
             <button className={`rh-filter-btn ${selectedPhotoCategory === 'medical' ? 'active' : ''}`} onClick={() => setSelectedPhotoCategory('medical')}>
-              🩺 Medical Camps
+              Medical Camps
             </button>
           </div>
         </div>
 
         {/* Photos Grid */}
         <div className="rh-gallery-grid">
-          {filteredPhotos.map((photo) => (
+          {filteredPhotos.map((photo, index) => (
             <div
               key={photo.id}
               className="rh-photo-card rh-shadow-sm"
@@ -1273,6 +1281,7 @@ export default function RaahatApp() {
                 <span className={`rh-photo-status-badge rh-badge-${photo.tagColor}`}>
                   {photo.status}
                 </span>
+                <span className="rh-photo-index">FIELD LOG / {String(index + 1).padStart(2, '0')}</span>
               </div>
               <div className="rh-photo-body">
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
@@ -1446,11 +1455,11 @@ export default function RaahatApp() {
                     Type of Disaster
                   </label>
                   <select style={{ width: '100%', padding: '12px', borderRadius: '12px', border: '1.5px solid var(--line)', background: '#F8FAFC', fontSize: '14px', fontFamily: 'inherit', fontWeight: 600 }}>
-                    <option>🔥 Forest Fire / Encroaching Smoke</option>
-                    <option>🌊 Severe Waterlogging / Flood Trapped</option>
-                    <option>🏚️ Structural Rubble / Earthquake Extraction</option>
-                    <option>🌀 Cyclone Inundation / Roof Collapse</option>
-                    <option>🩺 Critical Medical Trauma / Oxygen Needed</option>
+                    <option>Forest Fire / Encroaching Smoke</option>
+                    <option>Severe Waterlogging / Flood Trapped</option>
+                    <option>Structural Rubble / Earthquake Extraction</option>
+                    <option>Cyclone Inundation / Roof Collapse</option>
+                    <option>Critical Medical Trauma / Oxygen Needed</option>
                   </select>
                 </div>
 
