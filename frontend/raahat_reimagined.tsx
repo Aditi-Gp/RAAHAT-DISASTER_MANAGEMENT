@@ -389,6 +389,7 @@ const GlobalStyles = () => (
       color: var(--primary-900); margin: 0 0 18px;
     }
     .rh-hero p { font-size: 18px; line-height: 1.6; color: var(--slate); max-width: 530px; margin: 0 0 28px; font-weight: 500; }
+    .rh-process-section { max-width: 1280px; margin: 34px auto 0; }
 
     /* Action Hub Chips */
     .rh-action-hub {
@@ -408,15 +409,28 @@ const GlobalStyles = () => (
 
     /* 4-Step Process Bar */
     .rh-process-bar {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding: 24px;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; padding: 24px;
       background: #FFFFFF; border: 1.5px solid var(--line); border-radius: 22px; margin-bottom: 32px;
     }
-    .rh-step-item { display: flex; align-items: center; gap: 12px; }
-    .rh-step-num {
-      width: 34px; height: 34px; border-radius: 10px; background: var(--primary-50);
-      color: var(--primary-700); font-weight: 800; font-family: 'JetBrains Mono', monospace;
-      display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0;
+    .rh-step-item { position: relative; display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 0 14px; text-align: center; }
+    .rh-step-item:not(:last-child)::after {
+      content: ''; position: absolute; top: 27px; left: calc(50% + 28px); width: calc(100% - 56px);
+      height: 2px; background: linear-gradient(90deg, var(--primary-300), var(--primary-100));
     }
+    .rh-step-visual { position: relative; z-index: 1; width: 56px; height: 56px; border-radius: 18px; display: grid; place-items: center; color: #FFFFFF; box-shadow: 0 8px 18px rgba(13, 148, 136, 0.2); }
+    .rh-step-visual::before { content: ''; position: absolute; inset: -6px; border: 1px solid currentColor; border-radius: 22px; opacity: 0.22; animation: rh-step-pulse 2.4s ease-in-out infinite; }
+    .rh-step-visual.signal { background: linear-gradient(145deg, #E11D48, #F97316); }
+    .rh-step-visual.triage { background: linear-gradient(145deg, #7C3AED, #2563EB); animation-delay: 0.35s; }
+    .rh-step-visual.deploy { background: linear-gradient(145deg, #0284C7, #0D9488); animation-delay: 0.7s; }
+    .rh-step-visual.safe { background: linear-gradient(145deg, #059669, #65A30D); animation-delay: 1.05s; }
+    .rh-step-label { font-size: 13px; font-weight: 800; color: var(--primary-900); }
+    .rh-step-detail { font-size: 11px; color: var(--slate); }
+    .rh-step-num {
+      position: absolute; top: -8px; right: calc(50% - 38px); width: 22px; height: 22px; border-radius: 50%; background: var(--primary-900);
+      color: var(--primary-700); font-weight: 800; font-family: 'JetBrains Mono', monospace;
+      display: flex; align-items: center; justify-content: center; font-size: 9px; flex-shrink: 0; z-index: 2; color: #FFFFFF;
+    }
+    @keyframes rh-step-pulse { 0%, 100% { transform: scale(0.9); opacity: 0.2; } 50% { transform: scale(1.08); opacity: 0.5; } }
 
     /* 3D Metaphor Centerpiece */
     .rh-metaphor-section { max-width: 1280px; margin: 20px auto 60px; padding: 0 36px; }
@@ -575,6 +589,7 @@ const GlobalStyles = () => (
       .rh-hero p { margin: 0 auto 24px; }
       .rh-action-hub { grid-template-columns: repeat(2, 1fr); }
       .rh-process-bar { grid-template-columns: repeat(2, 1fr); }
+      .rh-step-item:not(:last-child)::after { display: none; }
       .rh-metaphor-card { grid-template-columns: 1fr; }
       .rh-gallery-grid { grid-template-columns: repeat(2, 1fr); }
     }
@@ -1165,41 +1180,37 @@ export default function RaahatApp() {
             </div>
           </div>
         </section>
-      </div>
 
-      {/* 4-Step Process Bar */}
-      <section style={{ maxWidth: '1280px', margin: '30px auto 0', padding: '0 36px' }}>
+        {/* 4-Step Process Bar */}
+        <section className="rh-process-section" style={{ padding: '0 36px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', margin: '0 0 12px 4px' }}>
+            <span className="rh-pulse-dot" />
+            <span className="rh-font-mono" style={{ fontSize: '11px', fontWeight: 800, color: 'var(--primary-700)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Response sequence</span>
+          </div>
         <div className="rh-process-bar rh-shadow-sm">
           <div className="rh-step-item">
-            <div className="rh-step-num">01</div>
-            <div>
-              <div style={{ fontSize: '13px', fontWeight: 800, color: 'var(--primary-900)' }}>SOS Signal Triggered</div>
-              <div style={{ fontSize: '11px', color: 'var(--slate)' }}>&lt; 30s satellite mesh ping</div>
-            </div>
+            <div className="rh-step-visual signal"><IconAlertCircle size={27} /><div className="rh-step-num">01</div></div>
+            <div className="rh-step-label">SOS Signal</div>
+            <div className="rh-step-detail">&lt; 30s satellite ping</div>
           </div>
           <div className="rh-step-item">
-            <div className="rh-step-num">02</div>
-            <div>
-              <div style={{ fontSize: '13px', fontWeight: 800, color: 'var(--primary-900)' }}>Automated AI Triage</div>
-              <div style={{ fontSize: '11px', color: 'var(--slate)' }}>Severity &amp; medical routing</div>
-            </div>
+            <div className="rh-step-visual triage"><IconSparkles size={27} /><div className="rh-step-num">02</div></div>
+            <div className="rh-step-label">AI Triage</div>
+            <div className="rh-step-detail">Severity &amp; medical routing</div>
           </div>
           <div className="rh-step-item">
-            <div className="rh-step-num">03</div>
-            <div>
-              <div style={{ fontSize: '13px', fontWeight: 800, color: 'var(--primary-900)' }}>Boats &amp; Medics Mobilized</div>
-              <div style={{ fontSize: '11px', color: 'var(--slate)' }}>Average response &lt; 12 mins</div>
-            </div>
+            <div className="rh-step-visual deploy"><IconPhoneCall size={27} /><div className="rh-step-num">03</div></div>
+            <div className="rh-step-label">Teams Mobilized</div>
+            <div className="rh-step-detail">Average response &lt; 12 mins</div>
           </div>
           <div className="rh-step-item">
-            <div className="rh-step-num">04</div>
-            <div>
-              <div style={{ fontSize: '13px', fontWeight: 800, color: 'var(--primary-900)' }}>Comfort &amp; Safe Haven</div>
-              <div style={{ fontSize: '11px', color: 'var(--slate)' }}>Blankets, clean water &amp; shelter</div>
-            </div>
+            <div className="rh-step-visual safe"><IconHeartHandshake size={27} /><div className="rh-step-num">04</div></div>
+            <div className="rh-step-label">Safe Haven</div>
+            <div className="rh-step-detail">Water, blankets &amp; shelter</div>
           </div>
         </div>
-      </section>
+        </section>
+      </div>
 
       {/* 3D Burning-to-Extinguish (Raahat Metaphor) */}
       <section className="rh-metaphor-section">
