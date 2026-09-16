@@ -379,22 +379,45 @@ const GlobalStyles = () => (
     /* Hero Section */
     .rh-hero-wrap { position: relative; padding: 5vh 36px 6vh; border-bottom: 1.5px solid var(--line); }
     .rh-hero {
-      position: relative; display: grid; grid-template-columns: 1.15fr 0.85fr; align-items: center; gap: 44px;
+      position: relative; display: grid; grid-template-columns: 0.9fr 1.1fr; align-items: center; gap: 56px;
       max-width: 1280px; margin: 0 auto; width: 100%;
     }
+    .rh-hero-copy { max-width: 590px; }
     .rh-hero-eyebrow {
       display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700;
       color: var(--primary-700); background: var(--primary-50); border: 1.5px solid var(--primary-200);
       padding: 7px 16px; border-radius: 999px; margin-bottom: 18px; font-family: 'JetBrains Mono', monospace;
     }
     .rh-hero h2 {
-      font-size: clamp(38px, 4.4vw, 64px); line-height: 1.06; letter-spacing: -0.03em;
+      font-size: clamp(42px, 5.2vw, 76px); line-height: 0.98; letter-spacing: -0.03em;
       font-family: 'Fraunces', Georgia, serif;
       font-variation-settings: 'opsz' 144, 'SOFT' 60, 'WONK' 1;
-      font-size: clamp(40px, 4.8vw, 68px); line-height: 1.04; letter-spacing: -0.025em;
+      font-size: clamp(42px, 5.2vw, 76px); line-height: 0.98; letter-spacing: -0.03em;
       color: var(--primary-900); margin: 0 0 18px;
     }
-    .rh-hero p { font-size: 18px; line-height: 1.6; color: var(--slate); max-width: 530px; margin: 0 0 28px; font-weight: 500; }
+    .rh-hero-subline {
+      font-family: 'Fraunces', Georgia, serif;
+      font-style: italic;
+      font-weight: 400;
+      font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;
+      color: var(--primary-600);
+      letter-spacing: -0.015em;
+    }
+    .rh-panic-word {
+      color: #DC2626;
+      font-style: italic;
+      font-weight: 600;
+    }
+    .rh-hero p { font-size: 18px; line-height: 1.55; color: var(--slate); max-width: 510px; margin: 0 0 28px; font-weight: 500; }
+    .rh-hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .rh-hero-actions button { min-height: 48px; }
+    .rh-hero-visual { position: relative; min-height: 430px; }
+    .rh-hero-image-card { position: absolute; inset: 0; overflow: hidden; border-radius: 24px; background: #0B2926; box-shadow: 0 24px 55px -18px rgba(13, 82, 75, 0.42); }
+    .rh-hero-image { width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1.02); }
+    .rh-hero-image-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,24,22,0.04) 35%, rgba(5,24,22,0.84) 100%); pointer-events: none; }
+    .rh-hero-image-caption { position: absolute; z-index: 1; bottom: 0; left: 0; right: 0; padding: 28px; color: #FFFFFF; }
+    .rh-hero-image-caption strong { display: block; margin-bottom: 5px; font-size: 18px; }
+    .rh-hero-image-caption span { color: #C1DED8; font-size: 12px; }
     .rh-process-section { max-width: 1280px; margin: 34px auto 0; padding: 22px 24px 24px; border-radius: 24px; background: linear-gradient(120deg, #0B2926, #123F3A); box-shadow: 0 18px 36px -18px rgba(5, 24, 22, 0.55); }
     .rh-process-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 0 4px 8px; }
     .rh-process-heading-label { display: inline-flex; align-items: center; gap: 12px; color: #D8F5EF; font: 800 12px 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.1em; }
@@ -620,12 +643,15 @@ const GlobalStyles = () => (
 
     @media (max-width: 1024px) {
       .rh-hero { grid-template-columns: 1fr; text-align: center; }
+      .rh-hero-copy { max-width: none; }
       .rh-hero-eyebrow { margin: 0 auto 16px; }
       .rh-hero p { margin: 0 auto 24px; }
+      .rh-hero-actions { justify-content: center; }
       .rh-action-hub { grid-template-columns: repeat(2, 1fr); }
       .rh-process-bar { grid-template-columns: repeat(2, 1fr); }
       .rh-step-item:not(:last-child)::after, .rh-step-item:not(:last-child)::before { display: none; }
       .rh-metaphor-card { grid-template-columns: 1fr; }
+      .rh-hero-visual { min-height: 360px; }
     }
     @media (max-width: 640px) {
       .rh-action-hub { grid-template-columns: 1fr; }
@@ -1146,19 +1172,21 @@ export default function RaahatApp() {
       {/* Hero Section */}
       <div className="rh-hero-wrap">
         <section className="rh-hero">
-          <div>
+          <div className="rh-hero-copy">
             <div className="rh-hero-eyebrow">
               <span className="rh-pulse-dot" />
               <span>National Disaster Command • 24/7 Active</span>
             </div>
             
             <h2 className="rh-font-display">
-              When Crisis Burns,<br />
-              <span className="rh-hi-teal">Raahat</span> Restores Solace.
+              Help should move<br />
+              <span className="rh-hero-subline rh-font-fraunces-italic">
+                before <span className="rh-panic-word">panic</span> spreads.
+              </span>
             </h2>
             
             <p>
-              Direct emergency intervention for <span className="rh-hi-amber">Wildfires</span>, <span className="rh-hi-violet">Cyclones</span>, <span className="rh-hi-teal">Flash Floods</span>, and <span className="rh-hi-green">Earthquakes</span>
+              Raahat connects people to the right team, the safest route, and the relief already in motion.
             </p>
 
             {/* Direct-Action Hub */}
@@ -1187,38 +1215,33 @@ export default function RaahatApp() {
             </div>
 */}
 
-            <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
+            <div className="rh-hero-actions">
               <button className="rh-btn-teal" onClick={() => {
                 const el = document.getElementById('field-photos');
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
               }}>
-                <IconCamera size={18} /> View Live Field Relief Photos
+                <IconCamera size={18} /> See field response
               </button>
               <button className="rh-btn-outline" onClick={() => {
                 const el = document.getElementById('interactive-map');
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
               }}>
-                <IconMapIcon size={18} /> Inspect Live Crisis Map
+                <IconMapIcon size={18} /> Open crisis map
               </button>
             </div>
           </div>
 
           {/* Hero Visual Card */}
-          <div style={{ position: 'relative' }}>
-            <div style={{ width: '100%', borderRadius: '28px', overflow: 'hidden', background: '#FFFFFF', border: '1.5px solid var(--line)', boxShadow: '0 20px 48px -14px rgba(13, 148, 136, 0.2)' }}>
+          <div className="rh-hero-visual">
+            <div className="rh-hero-image-card">
               <img
                 src="https://images.unsplash.com/photo-1547683905-f686c993aae5?auto=format&fit=crop&w=900&q=80"
                 alt="Amphibious flood rescue crew"
-                style={{ width: '100%', height: '280px', objectFit: 'cover' }}
+                className="rh-hero-image"
               />
-              <div style={{ padding: '18px 22px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#FFFFFF' }}>
-                <div>
-                  <strong style={{ color: 'var(--primary-900)', fontSize: '15px', display: 'block', fontWeight: 800 }}>NDRF &amp; Raahat Rapid Response</strong>
-                  <span style={{ color: 'var(--slate)', fontSize: '12px' }}>Assam &amp; Western Sector Deluge Deployment</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#059669', fontSize: '12px', fontWeight: 800, fontFamily: 'JetBrains Mono' }}>
-                  <IconShield size={16} /> 24/7 ON SITE
-                </div>
+              <div className="rh-hero-image-caption">
+                <strong>NDRF + Raahat response unit</strong>
+                <span>Assam and western sector flood deployment</span>
               </div>
             </div>
           </div>
