@@ -208,6 +208,8 @@ const GlobalStyles = () => (
       min-height: 100%; 
       margin: 0; 
       padding: 0;
+      max-width: 100%;
+      overflow-x: hidden;
     }
 
     body {
@@ -215,6 +217,8 @@ const GlobalStyles = () => (
       color: var(--ink);
       font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       overflow-x: hidden;
+      width: 100%;
+      -webkit-text-size-adjust: 100%;
       background-image:
         radial-gradient(55% 45% at 8% 10%, rgba(20, 184, 166, 0.14) 0%, rgba(20, 184, 166, 0) 70%),
         radial-gradient(50% 45% at 92% 18%, rgba(2, 132, 199, 0.12) 0%, rgba(2, 132, 199, 0) 70%),
@@ -305,6 +309,7 @@ const GlobalStyles = () => (
     }
 
     .rh-app { min-height: 100vh; display: flex; flex-direction: column; position: relative; }
+    .rh-app { min-height: 100vh; display: flex; flex-direction: column; position: relative; width: 100%; max-width: 100%; overflow-x: hidden; }
 
     /* Top Emergency Alert Ribbon */
     .rh-top-ticker {
@@ -333,10 +338,12 @@ const GlobalStyles = () => (
       border-bottom: 1.5px solid var(--line); position: sticky; top: 0; z-index: 40;
     }
     .rh-brand { display: flex; align-items: center; gap: 14px; text-decoration: none; color: inherit; }
+    .rh-brand { display: flex; align-items: center; gap: 14px; text-decoration: none; color: inherit; min-width: 0; }
     .rh-brand-mark {
       width: 46px; height: 46px; border-radius: 14px 14px 14px 4px;
       background: linear-gradient(135deg, var(--primary-500), #0284C7);
       display: flex; align-items: center; justify-content: center;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
       color: #fff; box-shadow: 0 8px 20px -4px rgba(20, 184, 166, 0.45); transform: rotate(-2deg);
     }
     .rh-brand h1 { margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -0.03em; color: var(--primary-900); line-height: 1; font-family: 'Syne', sans-serif; }
@@ -346,6 +353,8 @@ const GlobalStyles = () => (
       font-variation-settings: 'opsz' 144, 'SOFT' 80, 'WONK' 1;
     }
     .rh-brand span { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; color: var(--primary-600); text-transform: uppercase; font-family: 'JetBrains Mono', monospace; }
+    .rh-header-actions { display: flex; gap: 12px; align-items: center; }
+    .rh-btn-hotline { padding: 10px 18px; font-size: 13px; }
 
     /* Action Buttons */
     .rh-btn-sos {
@@ -392,7 +401,6 @@ const GlobalStyles = () => (
       font-size: clamp(42px, 5.2vw, 76px); line-height: 0.98; letter-spacing: -0.03em;
       font-family: 'Fraunces', Georgia, serif;
       font-variation-settings: 'opsz' 144, 'SOFT' 60, 'WONK' 1;
-      font-size: clamp(42px, 5.2vw, 76px); line-height: 0.98; letter-spacing: -0.03em;
       color: var(--primary-900); margin: 0 0 18px;
     }
     .rh-hero-subline {
@@ -641,23 +649,320 @@ const GlobalStyles = () => (
     }
     .rh-creator-badge strong { color: var(--primary-600); }
 
+    /* =========================================================================
+       RESPONSIVE & MOBILE-FRIENDLY STYLES (ALL SCREEN SIZES)
+       ========================================================================= */
     @media (max-width: 1024px) {
       .rh-hero { grid-template-columns: 1fr; text-align: center; }
+      .rh-hero { grid-template-columns: 1fr; text-align: center; gap: 36px; }
       .rh-hero-copy { max-width: none; }
       .rh-hero-eyebrow { margin: 0 auto 16px; }
       .rh-hero p { margin: 0 auto 24px; }
       .rh-hero-actions { justify-content: center; }
       .rh-action-hub { grid-template-columns: repeat(2, 1fr); }
       .rh-process-bar { grid-template-columns: repeat(2, 1fr); }
+      .rh-process-bar { grid-template-columns: repeat(2, 1fr); gap: 16px; }
       .rh-step-item:not(:last-child)::after, .rh-step-item:not(:last-child)::before { display: none; }
       .rh-metaphor-card { grid-template-columns: 1fr; }
       .rh-hero-visual { min-height: 360px; }
+      .rh-metaphor-card { grid-template-columns: 1fr; gap: 24px; }
+      .rh-metaphor-card::before { display: none; }
+      .rh-hero-visual { min-height: 320px; }
     }
+
+    @media (max-width: 768px) {
+      .rh-header {
+        padding: 12px 18px;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .rh-header-actions {
+        display: flex;
+        gap: 8px;
+        width: 100%;
+      }
+      .rh-header-actions .rh-btn-hotline,
+      .rh-header-actions .rh-btn-header-sos {
+        flex: 1;
+        justify-content: center;
+        padding: 10px 10px;
+        font-size: 12px;
+      }
+      .rh-hero-wrap {
+        padding: 28px 18px 36px;
+      }
+      .rh-hero h2 {
+        font-size: clamp(30px, 8.5vw, 48px);
+        line-height: 1.05;
+        margin-bottom: 14px;
+        word-break: break-word;
+      }
+      .rh-hero p {
+        font-size: 15px;
+        line-height: 1.5;
+        margin-bottom: 20px;
+      }
+      .rh-hero-actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+      }
+      .rh-hero-actions button {
+        width: 100%;
+        justify-content: center;
+        padding: 13px 18px;
+      }
+      .rh-hero-visual {
+        min-height: 250px;
+      }
+      .rh-metaphor-section {
+        padding: 0 18px;
+        margin: 24px auto 44px;
+      }
+      .rh-metaphor-card {
+        padding: 22px 18px;
+        border-radius: 20px;
+      }
+      .rh-canvas-container {
+        height: 280px;
+        border-radius: 16px;
+      }
+      .rh-gallery-section {
+        padding: 40px 18px 48px;
+        margin: 0 0 50px;
+      }
+      .rh-gallery-header h3 {
+        font-size: 28px !important;
+      }
+      .rh-photo-card {
+        flex: 0 0 min(340px, calc(100vw - 44px));
+      }
+      .rh-photo-img-wrap {
+        height: 200px;
+      }
+      .rh-map-section {
+        padding: 0 18px;
+        margin: 0 auto 50px;
+      }
+      .rh-map-frame {
+        height: 400px;
+        border-radius: 20px;
+      }
+    }
+
     @media (max-width: 640px) {
       .rh-action-hub { grid-template-columns: 1fr; }
       .rh-process-section { padding: 18px 14px 20px; }
       .rh-process-heading { align-items: flex-start; flex-direction: column; gap: 8px; }
       .rh-process-bar { grid-template-columns: 1fr; }
+      .rh-top-ticker {
+        padding: 8px 12px;
+        font-size: 11px;
+        gap: 8px;
+        line-height: 1.4;
+      }
+      .rh-top-ticker span.tag {
+        font-size: 9px;
+        padding: 2px 7px;
+      }
+      .rh-header {
+        padding: 10px 14px;
+      }
+      .rh-brand {
+        gap: 10px;
+      }
+      .rh-brand-mark {
+        width: 38px;
+        height: 38px;
+      }
+      .rh-brand h1 {
+        font-size: 22px;
+      }
+      .rh-brand span {
+        font-size: 9px;
+        letter-spacing: 0.1em;
+      }
+      .rh-header-actions .rh-btn-hotline,
+      .rh-header-actions .rh-btn-header-sos {
+        padding: 8px 8px;
+        font-size: 11px;
+        gap: 6px;
+      }
+      .rh-hero-wrap {
+        padding: 20px 14px 28px;
+      }
+      .rh-hero {
+        gap: 20px;
+      }
+      .rh-hero-eyebrow {
+        font-size: 11px;
+        padding: 5px 12px;
+        margin-bottom: 12px;
+        letter-spacing: 0.02em;
+      }
+      .rh-hero h2 {
+        font-size: clamp(24px, 7.8vw, 36px);
+        line-height: 1.08;
+      }
+      .rh-action-hub {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .rh-process-section {
+        margin: 18px auto 0;
+        padding: 16px 12px 18px;
+        border-radius: 16px;
+      }
+      .rh-process-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .rh-process-bar {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding-top: 8px;
+      }
+      .rh-step-item {
+        flex-direction: row;
+        align-items: center;
+        text-align: left;
+        gap: 12px;
+        padding: 0;
+      }
+      .rh-step-visual {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        border-radius: 12px;
+      }
+      .rh-step-visual::before {
+        inset: -4px;
+      }
+      .rh-step-num {
+        display: none;
+      }
+      .rh-step-label {
+        font-size: 12px;
+      }
+      .rh-step-detail {
+        font-size: 10.5px;
+      }
+      .rh-metaphor-section {
+        padding: 0 14px;
+        margin: 20px auto 36px;
+      }
+      .rh-metaphor-card {
+        padding: 16px 12px;
+        border-radius: 16px;
+        gap: 16px;
+      }
+      .rh-metaphor-card h3 {
+        font-size: 22px !important;
+      }
+      .rh-canvas-container {
+        height: 240px;
+        border-radius: 14px;
+      }
+      .rh-canvas-label {
+        top: 12px;
+        left: 12px;
+        font-size: 9.5px;
+      }
+      .rh-extinguish-controls {
+        bottom: 10px;
+        width: calc(100% - 20px);
+      }
+      .rh-btn-toggle-quench {
+        width: 100%;
+        justify-content: center;
+        padding: 9px 14px;
+        font-size: 12px;
+      }
+      .rh-gallery-section {
+        padding: 28px 14px 36px;
+        margin: 0 0 36px;
+      }
+      .rh-gallery-header {
+        margin-bottom: 14px;
+        gap: 10px;
+      }
+      .rh-gallery-header h3 {
+        font-size: 22px !important;
+      }
+      .rh-gallery-grid {
+        gap: 10px;
+        padding-bottom: 12px;
+      }
+      .rh-photo-card {
+        flex: 0 0 calc(100vw - 36px);
+        max-width: 310px;
+      }
+      .rh-photo-img-wrap {
+        height: 175px;
+      }
+      .rh-photo-body {
+        padding: 14px;
+      }
+      .rh-photo-body h4 {
+        font-size: 16px;
+      }
+      .rh-photo-body p {
+        font-size: 12px;
+        margin-bottom: 12px;
+      }
+      .rh-photo-stat {
+        font-size: 10.5px;
+        padding: 6px 10px;
+      }
+      .rh-map-section {
+        padding: 0 14px;
+        margin: 0 auto 36px;
+      }
+      .rh-map-section h3 {
+        font-size: 22px !important;
+      }
+      .rh-map-frame {
+        height: 340px;
+        border-radius: 16px;
+      }
+      .rh-filter-chips {
+        gap: 6px;
+      }
+      .rh-filter-btn {
+        padding: 5px 11px;
+        font-size: 11px;
+      }
+      .rh-floating-sos {
+        bottom: 12px;
+        left: 12px;
+        right: 12px;
+        justify-content: center;
+        padding: 11px 14px;
+        font-size: 12px;
+      }
+      .rh-footer {
+        padding: 24px 14px 76px;
+      }
+      .rh-footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+      }
+      .rh-creator-badge {
+        width: 100%;
+        justify-content: center;
+        font-size: 12px;
+        padding: 6px 12px;
+      }
+      .rh-modal-overlay {
+        padding: 10px;
+      }
+      .rh-modal-card {
+        padding: 18px 14px;
+        border-radius: 18px;
+        max-height: 94vh;
+      }
     }
   `}</style>
 );
@@ -1160,11 +1465,17 @@ export default function RaahatApp() {
         </a>
         <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
           <button className="rh-btn-outline" onClick={handleCopyHotline} style={{ padding: '10px 18px', fontSize: '13px' }}>
+        <div className="rh-header-actions">
+          <button className="rh-btn-outline rh-btn-hotline" onClick={handleCopyHotline}>
             <IconPhoneCall size={16} />
             <span>{copyFeedback ? 'Copied 1070!' : 'Emergency: 1070'}</span>
+            <span className="rh-hotline-text">{copyFeedback ? 'Copied 1070!' : 'Emergency: 1070'}</span>
           </button>
           <button className="rh-btn-sos" onClick={() => setShowSosModal(true)}>
             <IconAlertCircle size={16} /> Request Immediate Rescue
+          <button className="rh-btn-sos rh-btn-header-sos" onClick={() => setShowSosModal(true)}>
+            <IconAlertCircle size={16} />
+            <span className="rh-header-sos-text">Request Immediate Rescue</span>
           </button>
         </div>
       </header>
