@@ -74,6 +74,12 @@ const IconCamera = ({ size = 20 }: { size?: number }) => (
   </svg>
 );
 
+const IconChevronRight = ({ size = 20 }: { size?: number }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <polyline points="9 18 15 12 9 6" />
+  </svg>
+);
+
 // --- Real Field Disaster Relief Photos Data ---
 interface DisasterPhoto {
   id: string;
@@ -93,79 +99,79 @@ const DISASTER_PHOTOS: DisasterPhoto[] = [
   {
     id: 'p-wildfire',
     category: 'wildfire',
-    title: 'Forest Fire Arial Water Tanker Quench',
+    title: 'Holding the Ridge Line',
     tag: 'Forest Fire',
     tagColor: 'amber',
     location: 'Shimla Ridge & Uttarakhand Forest Sector',
-    status: 'ACTIVE AIR CONTAINMENT',
+    status: 'AIR CONTAINMENT ACTIVE',
     stat: '1,420 Hectares Protected • 0 Human Loss',
     imgUrl: 'https://images.unsplash.com/photo-1634009653379-a97409ee15de?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    description: 'Emergency aerial retardant tankers and specialized ground firebreaks containing high-heat ridge fires. Thermal drones guiding crews to hot spots.',
+    description: 'Aerial tankers work the ridge while thermal drones guide crews toward the next hot spot.',
     actionPrompt: 'Request Air Tanker Support',
   },
   {
     id: 'p-earthquake',
     category: 'earthquake',
-    title: 'Seismic Rubble Canine Search & Rescue',
+    title: 'Listening Beneath the Rubble',
     tag: 'Earthquake',
     tagColor: 'rose',
     location: 'Northern Faultline Zone',
-    status: 'SURVIVOR EXTRACTION',
+    status: 'SURVIVORS BEING EXTRACTED',
     stat: '48 Survivors Extracted • 320 Tents Erected',
     imgUrl: 'https://images.unsplash.com/photo-1610774149656-f4d74dafa99b?q=80&w=612&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    description: 'Heavy hydraulic spreaders and acoustic listening gear extracting trapped citizens from collapsed masonry. All victims stabilized at field trauma stations.',
+    description: 'Canine teams and acoustic gear lead rescuers through collapsed masonry to the field trauma station.',
     actionPrompt: 'Request Search & Rescue Team',
   },
   {
     id: 'p-typhoon',
     category: 'typhoon',
-    title: 'Super Cyclone Coastal Evacuation',
+    title: 'The Coast Moves Inland',
     tag: 'Typhoon & Storm',
     tagColor: 'violet',
     location: 'Bay of Bengal Coastal Belt',
-    status: 'SHELTER CORRIDORS OPEN',
+    status: 'SHELTERS OPEN',
     stat: '34 Storm Refuges • 18,200 Meals Served',
     imgUrl: 'https://images.unsplash.com/photo-1527482797697-8795b05a13fe?auto=format&fit=crop&w=800&q=80',
-    description: '140 km/h gale force wind mitigation with reinforced community storm shelters, standby generators, and warm emergency blanket kits.',
+    description: 'Reinforced shelters, standby power, and warm kits keep coastal families ahead of the storm.',
     actionPrompt: 'Locate Nearest Cyclone Haven',
   },
   {
     id: 'p-flood',
     category: 'flood',
-    title: 'Monsoon Deluge Zodiac Fleet Operations',
+    title: 'A Fleet Through the Flood',
     tag: 'Flash Flood',
     tagColor: 'cyan',
     location: 'Assam Plains & Mumbai Coastal Inundation',
-    status: 'AMPHIBIOUS EVACUATION',
+    status: 'EVACUATION UNDERWAY',
     stat: '42 Zodiac Boats • 4,820 Rescued',
     imgUrl: 'https://images.unsplash.com/photo-1547683905-f686c993aae5?auto=format&fit=crop&w=800&q=80',
-    description: 'Motorized inflatable boats navigating 8-foot flood waters to extract isolated families, elderly patients, and pets from submerged rooftops.',
+    description: 'Inflatable boats move through eight-foot water to reach families, elders, and pets on isolated rooftops.',
     actionPrompt: 'Deploy Boat to My Landmark',
   },
   {
     id: 'p-medical',
     category: 'medical',
-    title: 'Mobile Trauma & Pediatric Field Hospital',
+    title: 'Care Under Canvas',
     tag: 'Medical Trauma',
     tagColor: 'emerald',
     location: 'Central Relief Camp Cluster',
-    status: 'FREE SURGICAL TRIAGE',
+    status: 'TRIAGE OPERATING',
     stat: '68 Medical Tents • 2,400+ Patients Treated',
     imgUrl: 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=800&q=80',
-    description: 'Doctors, paramedics, and sterile ICU tents delivering mobile oxygen, burn dressings, and IV fluids at zero cost to disaster survivors.',
+    description: 'Doctors and paramedics bring oxygen, burn care, and IV fluids directly to the relief camp.',
     actionPrompt: 'Request Paramedic Video Connect',
   },
   {
     id: 'p-water',
     category: 'water',
-    title: 'Reverse Osmosis Clean Water & Rations Drop',
+    title: 'Clean Water, Mile by Mile',
     tag: 'Potable Water Supply',
     tagColor: 'cyan',
     location: 'Eastern Delta Logistics Node',
-    status: 'CONTINUOUS BOWSER DISPATCH',
+    status: 'WATER DISPATCH CONTINUOUS',
     stat: '4.8M Liters Dispatched • 12K Food Bags',
     imgUrl: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80',
-    description: 'Industrial mobile water filtration units purifying river water into safe drinking water for cut-off flood communities, preventing waterborne illness.',
+    description: 'Mobile filtration units turn local river water into safe drinking water for cut-off communities.',
     actionPrompt: 'Order Water Bowser Truck',
   },
 ];
@@ -389,7 +395,10 @@ const GlobalStyles = () => (
       color: var(--primary-900); margin: 0 0 18px;
     }
     .rh-hero p { font-size: 18px; line-height: 1.6; color: var(--slate); max-width: 530px; margin: 0 0 28px; font-weight: 500; }
-    .rh-process-section { max-width: 1280px; margin: 34px auto 0; }
+    .rh-process-section { max-width: 1280px; margin: 34px auto 0; padding: 22px 24px 24px; border-radius: 24px; background: linear-gradient(120deg, #0B2926, #123F3A); box-shadow: 0 18px 36px -18px rgba(5, 24, 22, 0.55); }
+    .rh-process-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 0 4px 8px; }
+    .rh-process-heading-label { display: inline-flex; align-items: center; gap: 12px; color: #D8F5EF; font: 800 12px 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.1em; }
+    .rh-process-heading-label::after { content: 'LIVE FLOW'; padding: 4px 8px; border: 1px solid rgba(143, 228, 216, 0.4); border-radius: 5px; color: #8FE4D8; font-size: 9px; letter-spacing: 0.08em; }
 
     /* Action Hub Chips */
     .rh-action-hub {
@@ -409,22 +418,23 @@ const GlobalStyles = () => (
 
     /* 4-Step Process Bar */
     .rh-process-bar {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; padding: 24px;
-      background: #FFFFFF; border: 1.5px solid var(--line); border-radius: 22px; margin-bottom: 32px;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; padding: 12px 0 0;
+      background: transparent; border: 0; border-radius: 0; margin-bottom: 0; box-shadow: none;
     }
-    .rh-step-item { position: relative; display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 0 14px; text-align: center; }
+    .rh-step-item { position: relative; display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 0 18px; text-align: center; }
     .rh-step-item:not(:last-child)::after {
       content: ''; position: absolute; top: 27px; left: calc(50% + 28px); width: calc(100% - 56px);
-      height: 2px; background: linear-gradient(90deg, var(--primary-300), var(--primary-100));
+      height: 3px; background: linear-gradient(90deg, #55D9C8, rgba(143, 228, 216, 0.2));
     }
-    .rh-step-visual { position: relative; z-index: 1; width: 56px; height: 56px; border-radius: 18px; display: grid; place-items: center; color: #FFFFFF; box-shadow: 0 8px 18px rgba(13, 148, 136, 0.2); }
+    .rh-step-item:not(:last-child)::before { content: '›'; position: absolute; top: 11px; right: -3px; z-index: 2; color: #8FE4D8; font: 400 30px 'Plus Jakarta Sans', sans-serif; }
+    .rh-step-visual { position: relative; z-index: 1; width: 64px; height: 64px; border: 4px solid #123F3A; border-radius: 20px; display: grid; place-items: center; color: #FFFFFF; box-shadow: 0 0 0 2px rgba(143, 228, 216, 0.25), 0 10px 20px rgba(0, 0, 0, 0.22); }
     .rh-step-visual::before { content: ''; position: absolute; inset: -6px; border: 1px solid currentColor; border-radius: 22px; opacity: 0.22; animation: rh-step-pulse 2.4s ease-in-out infinite; }
     .rh-step-visual.signal { background: linear-gradient(145deg, #E11D48, #F97316); }
     .rh-step-visual.triage { background: linear-gradient(145deg, #7C3AED, #2563EB); animation-delay: 0.35s; }
     .rh-step-visual.deploy { background: linear-gradient(145deg, #0284C7, #0D9488); animation-delay: 0.7s; }
     .rh-step-visual.safe { background: linear-gradient(145deg, #059669, #65A30D); animation-delay: 1.05s; }
-    .rh-step-label { font-size: 13px; font-weight: 800; color: var(--primary-900); }
-    .rh-step-detail { font-size: 11px; color: var(--slate); }
+    .rh-step-label { font-size: 13px; font-weight: 800; color: #FFFFFF; }
+    .rh-step-detail { font-size: 11px; color: #A8C3BE; }
     .rh-step-num {
       position: absolute; top: -8px; right: calc(50% - 38px); width: 22px; height: 22px; border-radius: 50%; background: var(--primary-900);
       color: var(--primary-700); font-weight: 800; font-family: 'JetBrains Mono', monospace;
@@ -432,19 +442,25 @@ const GlobalStyles = () => (
     }
     @keyframes rh-step-pulse { 0%, 100% { transform: scale(0.9); opacity: 0.2; } 50% { transform: scale(1.08); opacity: 0.5; } }
 
-    /* 3D Metaphor Centerpiece */
-    .rh-metaphor-section { max-width: 1280px; margin: 20px auto 60px; padding: 0 36px; }
+    /* Live Response Status */
+    .rh-metaphor-section { max-width: 1280px; margin: 32px auto 60px; padding: 0 36px; }
     .rh-metaphor-card {
-      background: linear-gradient(145deg, #FFFFFF, #EBF8F6);
-      border: 1.5px solid var(--line); border-radius: 30px; padding: 36px 44px;
+      background: linear-gradient(145deg, #FFFFFF 0%, #F4FBFA 65%, #E5F5F2 100%);
+      border: 1.5px solid var(--line); border-radius: 24px; padding: 32px 38px;
       display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
       position: relative; overflow: hidden;
     }
+    .rh-metaphor-card::before { content: ''; position: absolute; inset: 0 50% 0 0; background: linear-gradient(90deg, rgba(255,255,255,0.7), transparent); pointer-events: none; }
+    .rh-response-eyebrow { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 14px; color: var(--primary-700); font: 800 11px 'JetBrains Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; }
+    .rh-response-copy { position: relative; z-index: 1; }
+    .rh-response-status { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; color: var(--slate); font: 700 11px 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.05em; }
+    .rh-response-status strong { color: var(--primary-700); }
     .rh-canvas-container {
       width: 100%; height: 360px; border-radius: 24px; overflow: hidden;
       background: radial-gradient(circle at 50% 50%, #0D2D2A 0%, #051816 100%);
-      position: relative; box-shadow: inset 0 2px 20px rgba(0,0,0,0.5);
+      position: relative; box-shadow: inset 0 2px 20px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.12);
     }
+    .rh-canvas-label { position: absolute; top: 18px; left: 20px; z-index: 2; color: rgba(255,255,255,0.72); font: 700 11px 'JetBrains Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; }
     .rh-extinguish-controls {
       position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%);
       display: flex; gap: 12px; z-index: 10;
@@ -465,6 +481,13 @@ const GlobalStyles = () => (
     .rh-gallery-header p { color: #A8C3BE !important; }
     .rh-gallery-header .rh-filter-btn { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); color: #D8E9E6; }
     .rh-gallery-header .rh-filter-btn:hover, .rh-gallery-header .rh-filter-btn.active { background: #D8F5EF; border-color: #D8F5EF; color: #102522; }
+    .rh-gallery-next {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 40px;
+      padding: 8px 14px; border: 1px solid rgba(255,255,255,0.24); border-radius: 8px;
+      background: #D8F5EF; color: #102522; cursor: pointer; font: 800 12px 'JetBrains Mono', monospace;
+      text-transform: uppercase; letter-spacing: 0.04em; transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .rh-gallery-next:hover { background: #FFFFFF; transform: translateX(3px); }
     
     .rh-filter-chips { display: flex; flex-wrap: wrap; gap: 10px; }
     .rh-filter-btn {
@@ -507,6 +530,8 @@ const GlobalStyles = () => (
       letter-spacing: 0.05em; backdrop-filter: blur(8px);
     }
     .rh-photo-body { padding: 22px; display: flex; flex-direction: column; flex: 1; }
+    .rh-photo-meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+    .rh-photo-location { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: right; }
     .rh-photo-body h4 { margin: 0 0 8px; font-size: 21px; font-weight: 800; color: var(--primary-900); line-height: 1.2; }
     .rh-photo-body p { margin: 0 0 16px; font-size: 13px; color: var(--slate); line-height: 1.5; flex: 1; }
     .rh-photo-stat {
@@ -599,11 +624,13 @@ const GlobalStyles = () => (
       .rh-hero p { margin: 0 auto 24px; }
       .rh-action-hub { grid-template-columns: repeat(2, 1fr); }
       .rh-process-bar { grid-template-columns: repeat(2, 1fr); }
-      .rh-step-item:not(:last-child)::after { display: none; }
+      .rh-step-item:not(:last-child)::after, .rh-step-item:not(:last-child)::before { display: none; }
       .rh-metaphor-card { grid-template-columns: 1fr; }
     }
     @media (max-width: 640px) {
       .rh-action-hub { grid-template-columns: 1fr; }
+      .rh-process-section { padding: 18px 14px 20px; }
+      .rh-process-heading { align-items: flex-start; flex-direction: column; gap: 8px; }
       .rh-process-bar { grid-template-columns: 1fr; }
     }
   `}</style>
@@ -631,7 +658,7 @@ function makeGlowTexture(hex: string) {
 }
 
 // =========================================================================
-// 3D BURNING-TO-EXTINGUISHING METAPHOR (RAAHAT)
+// LIVE RESPONSE STATUS VISUALIZATION (RAAHAT)
 // =========================================================================
 const BurningToComfort3D = ({ isExtinguished, onToggle }: { isExtinguished: boolean; onToggle: () => void }) => {
   const mountRef = useRef<HTMLDivElement>(null);
@@ -848,28 +875,30 @@ const BurningToComfort3D = ({ isExtinguished, onToggle }: { isExtinguished: bool
       <div>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 14px', background: isExtinguished ? 'var(--primary-100)' : '#FFE4E6', borderRadius: '999px', color: isExtinguished ? 'var(--primary-900)' : '#BE123C', fontSize: '13px', fontWeight: 800, marginBottom: '16px', fontFamily: 'JetBrains Mono, monospace' }}>
           {isExtinguished ? <IconDroplets size={16} /> : <IconFlame size={16} />}
-          {isExtinguished ? 'Solace Restored (Raahat Deployed)' : 'Emergency Flame (Crisis Detected)'}
+          {isExtinguished ? 'Response Stabilized' : 'Incident Response Required'}
         </div>
+        <div className="rh-response-eyebrow"><IconShield size={14} /> Live response status</div>
         
         <h3 className="rh-font-serif" style={{ fontSize: '34px', color: 'var(--primary-900)', margin: '0 0 14px', lineHeight: 1.15 }}>
           {isExtinguished ? (
-            <span>The Crisis is <span className="rh-hi-teal">Quenched</span>. Solace Restored.</span>
+            <span>Relief teams are <span className="rh-hi-teal">deployed</span>. Communities are stabilizing.</span>
           ) : (
-            <span>The Fire of Disaster <span className="rh-hi-amber">Burns</span>.</span>
+            <span>Every alert becomes a <span className="rh-hi-amber">coordinated response</span>.</span>
           )}
         </h3>
+        <div className="rh-response-status"><span>Incident: Mumbai Coast Floods</span><strong>{isExtinguished ? 'Monitoring' : 'Dispatching'}</strong></div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '10px', marginBottom: '24px' }}>
           <div style={{ background: '#FFFFFF', padding: '12px', borderRadius: '14px', border: '1.5px solid var(--line)' }}>
-            <span style={{ fontSize: '11px', color: 'var(--slate)', textTransform: 'uppercase', fontWeight: 800, fontFamily: 'JetBrains Mono' }}>Flame Level</span>
+            <span style={{ fontSize: '11px', color: 'var(--slate)', textTransform: 'uppercase', fontWeight: 800, fontFamily: 'JetBrains Mono' }}>Incident status</span>
             <strong style={{ display: 'block', fontSize: '18px', color: isExtinguished ? '#059669' : '#E11D48' }}>
-              {isExtinguished ? 'Extinguished' : 'Active 890°C'}
+              {isExtinguished ? 'Stabilized' : 'Active'}
             </strong>
           </div>
           <div style={{ background: '#FFFFFF', padding: '12px', borderRadius: '14px', border: '1.5px solid var(--line)' }}>
-            <span style={{ fontSize: '11px', color: 'var(--slate)', textTransform: 'uppercase', fontWeight: 800, fontFamily: 'JetBrains Mono' }}>Cooling Mist</span>
+            <span style={{ fontSize: '11px', color: 'var(--slate)', textTransform: 'uppercase', fontWeight: 800, fontFamily: 'JetBrains Mono' }}>Field response</span>
             <strong style={{ display: 'block', fontSize: '18px', color: '#0284C7' }}>
-              {isExtinguished ? 'Active 100%' : 'Standby'}
+              {isExtinguished ? 'En route' : 'Standby'}
             </strong>
           </div>
           <div style={{ background: '#FFFFFF', padding: '12px', borderRadius: '14px', border: '1.5px solid var(--line)' }}>
@@ -880,22 +909,25 @@ const BurningToComfort3D = ({ isExtinguished, onToggle }: { isExtinguished: bool
         
         <button
           onClick={onToggle}
+          aria-pressed={!isExtinguished}
+          aria-label={isExtinguished ? 'Simulate an active incident' : 'Mark incident response as stabilized'}
           className="rh-btn-toggle-quench"
           style={{ background: isExtinguished ? 'linear-gradient(135deg, #0D9488, #0284C7)' : 'linear-gradient(135deg, #E11D48, #D97706)' }}
         >
           {isExtinguished ? (
-            <><IconFlame size={18} /> Test Emergency Flame</>
+            <><IconAlertCircle size={18} /> Simulate Active Incident</>
           ) : (
-            <><IconDroplets size={18} /> Tap to Extinguish Crisis (Raahat)</>
+            <><IconShield size={18} /> Mark Response Stabilized</>
           )}
         </button>
       </div>
 
       <div className="rh-canvas-container">
+        <div className="rh-canvas-label">Response intensity visualization</div>
         <div ref={mountRef} style={{ width: '100%', height: '100%' }} />
         <div className="rh-extinguish-controls">
           <button onClick={onToggle} style={{ background: 'rgba(255,255,255,0.92)', border: 'none', padding: '8px 16px', borderRadius: '999px', fontSize: '12px', fontWeight: 800, color: 'var(--primary-900)', cursor: 'pointer', fontFamily: 'JetBrains Mono' }}>
-            {isExtinguished ? '💧 Quenched State' : '🔥 Burning State'}
+            {isExtinguished ? 'Stabilized' : 'Active incident'}
           </button>
         </div>
       </div>
@@ -914,16 +946,15 @@ interface CityIssue {
   issueShort: string;
   category: 'flood' | 'smog' | 'cyclone' | 'water';
   severity: 'critical' | 'severe' | 'stable';
-  icon: string;
   teamsDeployed: string;
 }
 
 const CITIES: CityIssue[] = [
-  { id: 'delhi', name: 'Delhi NCR', lat: 28.6139, lng: 77.2090, issueShort: 'Smog & Air Crisis', category: 'smog', severity: 'severe', icon: '💨', teamsDeployed: '24 Mobile Oxygen Wings' },
-  { id: 'mumbai', name: 'Mumbai Coast', lat: 19.0760, lng: 72.8777, issueShort: 'Flash Flood Rescue', category: 'flood', severity: 'critical', icon: '🌊', teamsDeployed: '42 Zodiac Boats' },
-  { id: 'guwahati', name: 'Guwahati Sector', lat: 26.1445, lng: 91.7362, issueShort: 'Brahmaputra Flood', category: 'flood', severity: 'critical', icon: '🚨', teamsDeployed: '12 Airlift Helis' },
-  { id: 'chennai', name: 'Chennai Hub', lat: 13.0827, lng: 80.2707, issueShort: 'Cyclone Michaung', category: 'cyclone', severity: 'severe', icon: '🌀', teamsDeployed: '34 Storm Refuges' },
-  { id: 'kolkata', name: 'Kolkata Node', lat: 22.5726, lng: 88.3639, issueShort: 'Water Purification', category: 'water', severity: 'stable', icon: '💧', teamsDeployed: '12 RO Filtration Bowsers' },
+  { id: 'delhi', name: 'Delhi NCR', lat: 28.6139, lng: 77.2090, issueShort: 'Smog & Air Crisis', category: 'smog', severity: 'severe', teamsDeployed: '24 Mobile Oxygen Wings' },
+  { id: 'mumbai', name: 'Mumbai Coast', lat: 19.0760, lng: 72.8777, issueShort: 'Flash Flood Rescue', category: 'flood', severity: 'critical', teamsDeployed: '42 Zodiac Boats' },
+  { id: 'guwahati', name: 'Guwahati Sector', lat: 26.1445, lng: 91.7362, issueShort: 'Brahmaputra Flood', category: 'flood', severity: 'critical', teamsDeployed: '12 Airlift Helis' },
+  { id: 'chennai', name: 'Chennai Hub', lat: 13.0827, lng: 80.2707, issueShort: 'Cyclone Michaung', category: 'cyclone', severity: 'severe', teamsDeployed: '34 Storm Refuges' },
+  { id: 'kolkata', name: 'Kolkata Node', lat: 22.5726, lng: 88.3639, issueShort: 'Water Purification', category: 'water', severity: 'stable', teamsDeployed: '12 RO Filtration Bowsers' },
 ];
 
 const TacticalMap = ({ selectedFilter, onSelectCity, activeCityId }: { selectedFilter: string; onSelectCity: (city: CityIssue) => void; activeCityId: string | null }) => {
@@ -957,7 +988,6 @@ const TacticalMap = ({ selectedFilter, onSelectCity, activeCityId }: { selectedF
             html: `
               <div class="rh-map-pin" id="marker-${city.id}">
                 <div class="rh-pin-badge ${city.severity}">
-                  <span>${city.icon}</span>
                   <span>${city.issueShort}</span>
                 </div>
                 <div class="rh-pin-marker ${city.severity}">
@@ -982,7 +1012,7 @@ const TacticalMap = ({ selectedFilter, onSelectCity, activeCityId }: { selectedF
                 </span>
               </div>
               <div style="color: #0D9488; font-size: 13px; font-weight: 700; margin-bottom: 8px;">
-                ${city.icon} ${city.issueShort}
+                ${city.issueShort}
               </div>
               <div style="border-top: 1px solid #E6F3F1; padding-top: 6px; font-size: 11px; color: #0F766E; font-weight: 700;">
                 Deployment: ${city.teamsDeployed}
@@ -1046,6 +1076,7 @@ export default function RaahatApp() {
   const [showSosModal, setShowSosModal] = useState(false);
   const [sosSubmitted, setSosSubmitted] = useState(false);
   const [copyFeedback, setCopyFeedback] = useState(false);
+  const galleryScrollRef = useRef<HTMLDivElement>(null);
 
   const handleCopyHotline = () => {
     navigator.clipboard.writeText('1070');
@@ -1067,6 +1098,14 @@ export default function RaahatApp() {
     ? DISASTER_PHOTOS
     : DISASTER_PHOTOS.filter(p => p.category === selectedPhotoCategory);
 
+  const scrollToNextPhoto = () => {
+    const gallery = galleryScrollRef.current;
+    if (!gallery) return;
+    const firstCard = gallery.querySelector<HTMLElement>('.rh-photo-card');
+    const cardStep = firstCard ? firstCard.offsetWidth + 20 : gallery.clientWidth;
+    gallery.scrollBy({ left: cardStep, behavior: 'smooth' });
+  };
+
   return (
     <div className="rh-app">
       <GlobalStyles />
@@ -1080,7 +1119,7 @@ export default function RaahatApp() {
           onClick={() => setShowSosModal(true)}
           style={{ background: '#FFFFFF', color: '#0F766E', border: 'none', padding: '4px 14px', borderRadius: '999px', fontSize: '11px', fontWeight: 800, cursor: 'pointer', fontFamily: 'JetBrains Mono' }}
         >
-          SOS Request ⚡
+          SOS Request
         </button>
       </div>
 
@@ -1126,25 +1165,21 @@ export default function RaahatApp() {
             {/*
             <div className="rh-action-hub">
               <div className="rh-action-chip" onClick={() => setShowSosModal(true)}>
-                <span style={{ fontSize: '20px' }}>🚨</span>
                 <strong>Instant SOS</strong>
                 <span>Dispatch in &lt; 12 mins</span>
                 <span className="rh-font-mono">ETA &lt; 12 MINS</span>
               </div>
               <div className="rh-action-chip" onClick={() => handleMapFilterClick('flood', 'mumbai')}>
-                <span style={{ fontSize: '20px' }}>🌊</span>
                 <strong>Flood Rescue</strong>
                 <span>42 Zodiacs in Mumbai</span>
                 <span className="rh-font-mono">42 ZODIACS ACTIVE</span>
               </div>
               <div className="rh-action-chip" onClick={() => handleMapFilterClick('smog', 'delhi')}>
-                <span style={{ fontSize: '20px' }}>💨</span>
                 <strong>Smog &amp; O₂ Aid</strong>
                 <span>800 Purifiers in Delhi</span>
                 <span className="rh-font-mono">800 PURIFIERS ON</span>
               </div>
               <div className="rh-action-chip" onClick={() => handleMapFilterClick('cyclone', 'chennai')}>
-                <span style={{ fontSize: '20px' }}>🌀</span>
                 <strong>Cyclone Havens</strong>
                 <span>34 Refuges in Chennai</span>
                 <span className="rh-font-mono">34 REFUGES OPEN</span>
@@ -1190,10 +1225,12 @@ export default function RaahatApp() {
         </section>
 
         {/* 4-Step Process Bar */}
-        <section className="rh-process-section" style={{ padding: '0 36px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', margin: '0 0 12px 4px' }}>
+        <section className="rh-process-section">
+          <div className="rh-process-heading">
+            <div className="rh-process-heading-label">
             <span className="rh-pulse-dot" />
-            <span className="rh-font-mono" style={{ fontSize: '11px', fontWeight: 800, color: 'var(--primary-700)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Response sequence</span>
+              <span>Response sequence</span>
+            </div>
           </div>
         <div className="rh-process-bar rh-shadow-sm">
           <div className="rh-step-item">
@@ -1235,18 +1272,23 @@ export default function RaahatApp() {
         <div className="rh-gallery-header">
           <div>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '12px', fontWeight: 800, color: '#8FE4D8', textTransform: 'uppercase', letterSpacing: '0.08em', fontFamily: 'JetBrains Mono' }}>
-              <IconCamera size={15} /> Ground Telemetry &amp; Field Operations
+              <IconCamera size={15} /> Field notes / Relief grid
             </div>
             <h3 className="rh-font-serif" style={{ fontSize: '36px', color: 'var(--primary-900)', margin: '6px 0 0' }}>
-              Disaster Relief in Action
+              What Relief Looks Like
             </h3>
             <p style={{ color: 'var(--slate)', fontSize: '15px', margin: '4px 0 0' }}>
-              Real-time documented relief operations across fire lines, flooded rivers, and seismic zones.
+              A visual record of the crews, shelters, and supplies moving where they are needed most.
             </p>
           </div>
 
-          {/* Filter Chips */}
-          <div className="rh-filter-chips">
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
+            <button className="rh-gallery-next" type="button" onClick={scrollToNextPhoto} aria-label="Show next field relief photo">
+              Next log <IconChevronRight size={18} />
+            </button>
+
+            {/* Filter Chips */}
+            <div className="rh-filter-chips">
             <button className={`rh-filter-btn ${selectedPhotoCategory === 'all' ? 'active' : ''}`} onClick={() => setSelectedPhotoCategory('all')}>
               All Operations (6)
             </button>
@@ -1265,11 +1307,12 @@ export default function RaahatApp() {
             <button className={`rh-filter-btn ${selectedPhotoCategory === 'medical' ? 'active' : ''}`} onClick={() => setSelectedPhotoCategory('medical')}>
               Medical Camps
             </button>
+            </div>
           </div>
         </div>
 
         {/* Photos Grid */}
-        <div className="rh-gallery-grid">
+        <div className="rh-gallery-grid" ref={galleryScrollRef}>
           {filteredPhotos.map((photo, index) => (
             <div
               key={photo.id}
@@ -1284,24 +1327,24 @@ export default function RaahatApp() {
                 <span className="rh-photo-index">FIELD LOG / {String(index + 1).padStart(2, '0')}</span>
               </div>
               <div className="rh-photo-body">
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
+                <div className="rh-photo-meta">
                   <span style={{ fontSize: '12px', fontWeight: 800, color: 'var(--primary-700)', fontFamily: 'JetBrains Mono' }}>
                     {photo.tag}
                   </span>
-                  <span style={{ fontSize: '11px', color: 'var(--slate)' }}>
-                    📍 {photo.location.split('&')[0]}
+                  <span className="rh-photo-location" style={{ fontSize: '11px', color: 'var(--slate)' }}>
+                    {photo.location.split('&')[0]}
                   </span>
                 </div>
                 <h4>{photo.title}</h4>
                 <p>{photo.description}</p>
                 <div className="rh-photo-stat">
-                  ⚡ {photo.stat}
+                  {photo.stat}
                 </div>
                 <button
                   className="rh-btn-outline"
                   style={{ width: '100%', justifyContent: 'center', padding: '10px 16px', fontSize: '13px', fontWeight: 800 }}
                 >
-                  {photo.actionPrompt} →
+                  {photo.actionPrompt}
                 </button>
               </div>
             </div>
@@ -1323,19 +1366,19 @@ export default function RaahatApp() {
 
           <div className="rh-filter-chips">
             <button className={`rh-filter-btn ${selectedMapFilter === 'all' ? 'active' : ''}`} onClick={() => handleMapFilterClick('all')}>
-              🌐 All Regions (5)
+              All Regions (5)
             </button>
             <button className={`rh-filter-btn ${selectedMapFilter === 'flood' ? 'active' : ''}`} onClick={() => handleMapFilterClick('flood', 'mumbai')}>
-              🌊 Floods (Mumbai)
+              Floods (Mumbai)
             </button>
             <button className={`rh-filter-btn ${selectedMapFilter === 'smog' ? 'active' : ''}`} onClick={() => handleMapFilterClick('smog', 'delhi')}>
-              💨 Smog (Delhi)
+              Smog (Delhi)
             </button>
             <button className={`rh-filter-btn ${selectedMapFilter === 'cyclone' ? 'active' : ''}`} onClick={() => handleMapFilterClick('cyclone', 'chennai')}>
-              🌀 Cyclone (Chennai)
+              Cyclone (Chennai)
             </button>
             <button className={`rh-filter-btn ${selectedMapFilter === 'water' ? 'active' : ''}`} onClick={() => handleMapFilterClick('water', 'kolkata')}>
-              💧 Clean Water (Kolkata)
+              Clean Water (Kolkata)
             </button>
           </div>
         </div>
@@ -1353,7 +1396,7 @@ export default function RaahatApp() {
       <div className="rh-floating-sos" onClick={() => setShowSosModal(true)}>
         <span className="rh-pulse-dot" style={{ background: '#FFFFFF' }} />
         <span style={{ fontWeight: 800, fontSize: '14px', letterSpacing: '0.02em', fontFamily: 'Plus Jakarta Sans' }}>
-          🚨 NEED URGENT RESCUE? TAP SOS
+          NEED URGENT RESCUE? TAP SOS
         </span>
       </div>
 
@@ -1380,7 +1423,7 @@ export default function RaahatApp() {
               {selectedPhotoModal.title}
             </h3>
             <div style={{ fontSize: '13px', color: 'var(--slate)', marginBottom: '14px' }}>
-              📍 <strong>Location:</strong> {selectedPhotoModal.location}
+              <strong>Location:</strong> {selectedPhotoModal.location}
             </div>
 
             <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--slate)', margin: '0 0 16px' }}>
@@ -1402,7 +1445,7 @@ export default function RaahatApp() {
                 style={{ flex: 1, justifyContent: 'center' }}
                 onClick={() => { setSelectedPhotoModal(null); setShowSosModal(true); }}
               >
-                🚨 Request Dispatch Here
+                Request Dispatch Here
               </button>
               <button
                 className="rh-btn-outline"
@@ -1488,7 +1531,7 @@ export default function RaahatApp() {
                 </div>
 
                 <button type="submit" className="rh-btn-sos" style={{ width: '100%', justifyContent: 'center', padding: '14px' }}>
-                  🚨 Confirm &amp; Dispatch Immediate Rescue
+                  Confirm &amp; Dispatch Immediate Rescue
                 </button>
               </form>
             )}
