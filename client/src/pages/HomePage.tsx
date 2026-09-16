@@ -1,58 +1,21 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Shield, AlertTriangle, Users, Activity } from 'lucide-react';
-import { useEffect, useRef } from 'react';
+import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
 
-declare global {
-  interface Window {
-    mappls?: any;
-  }
-}
+const defaultIcon = L.icon({
+  iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+  iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
+  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
 
 export const HomePage = () => {
-  const mapRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const mapplsToken =
-      import.meta.env.VITE_MAPPLS_API_KEY || 'ynqaljbngrkxkvqlfdmtosfixqcmvghzmzyd';
-
-    const initializeMap = () => {
-      if (!mapRef.current || !window.mappls) {
-        return;
-      }
-
-      try {
-        new window.mappls.Map(mapRef.current, {
-          center: { lat: 28.6139, lng: 77.209 },
-          zoom: 11,
-        });
-      } catch (error) {
-        console.error('Mappls map failed to initialize:', error);
-      }
-    };
-
-    if (window.mappls) {
-      initializeMap();
-      return;
-    }
-
-    const existingScript = document.getElementById('mappls-sdk');
-
-    if (existingScript) {
-      existingScript.addEventListener('load', initializeMap, { once: true });
-      return;
-    }
-
-    const script = document.createElement('script');
-    script.id = 'mappls-sdk';
-    script.src = `https://apis.mappls.com/advancedmaps/api/${mapplsToken}/map_sdk?v=3.0&layer=vector`;
-    script.async = true;
-    script.onload = initializeMap;
-    script.onerror = () => {
-      console.error('Mappls SDK failed to load.');
-    };
-
-    document.body.appendChild(script);
-  }, []);
+  const center: [number, number] = [28.6139, 77.209];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-50 to-orange-50">
@@ -79,10 +42,17 @@ export const HomePage = () => {
               Real-time disaster awareness for Delhi and surrounding emergency response zones.
             </p>
           </div>
-          <div
-            ref={mapRef}
-            className="h-[420px] w-full rounded-2xl overflow-hidden shadow-lg border border-slate-200 bg-slate-100"
-          />
+          <div className="h-[420px] w-full overflow-hidden rounded-2xl border border-slate-200 shadow-lg">
+            <MapContainer center={center} zoom={11} scrollWheelZoom className="h-full w-full">
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              <Marker position={center} icon={defaultIcon}>
+                <Popup>Raahat emergency response zone</Popup>
+              </Marker>
+            </MapContainer>
+          </div>
         </div>
       </section>
 
